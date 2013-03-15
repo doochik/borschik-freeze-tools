@@ -1,0 +1,14 @@
+{
+    "paths": {
+        "./": "//mailstatic.yandex.net/neo2/{{VERSION}}/",
+        "static/_/": "//mailstatic.yandex.net/neo2/_/"
+    },
+    "follow_symlinks": {
+        "./": true,
+        "static/": false,
+        "static/css/": true
+    },
+    "freeze_paths": {
+        ".": "_/"
+    }
+}

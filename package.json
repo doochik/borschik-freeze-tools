@@ -1,0 +1,20 @@
+{
+    "author": {
+        "name": "Alexey Androsov",
+        "email": "doochik@ya.ru"
+    },
+    "name": "borschik-freeze-tools",
+    "description": "Improved freeze tools for borschik (https://github.com/veged/borschik)",
+    "version": "0.0.0",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/doochik/borschik-freeze-tools.git"
+    },
+    "dependencies": {
+        "borschik": "~0.2"
+    },
+    "engines": {
+        "node": ">=0.8"
+    }
+}
+
