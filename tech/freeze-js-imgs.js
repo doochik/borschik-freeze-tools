@@ -12,11 +12,12 @@ const uniqStr = '\00borschik\00';
  * @const
  * @type {RegExp}
  */
-const allIncRe = /borschikFreeze\(['"](.*?)['"]\)/g;
+const allIncRe = /\/\/.*|\/\*[\s\S]*?\*\/|borschikFreeze\(['"]([^"']+?)['"]\)/g;
 
 exports.Tech = INHERIT(cssbase.Tech, {
 
     minimize: function(content) {
+        // no minimize for this tech
         return content;
     },
 
@@ -31,10 +32,17 @@ exports.Tech = INHERIT(cssbase.Tech, {
 
             var texts = text
                 .replace(allIncRe, function(_, include) {
-                    includes.push({
-                        url: _this.pathTo(include),
-                        type: 'linkUrl'
-                    });
+                    if (include) {
+                        includes.push({
+                            url: _this.pathTo(include),
+                            type: 'linkUrl'
+                        });
+                    } else {
+                        includes.push({
+                            file: _,
+                            type: 'comment'
+                        });
+                    }
 
                     return uniqStr;
 
@@ -58,12 +66,17 @@ exports.Tech = INHERIT(cssbase.Tech, {
             for(var i = 0; i < parsed.length; i++) {
                 var item = parsed[i];
 
-                // process only linkUrl type
-                if (!item || item.type != 'linkUrl') {
+                if (typeof item == 'string') {
                     continue;
                 }
 
-                parsed[i] = this.child(item.type, item.url).process(baseFile);
+                if (item.type == 'linkUrl') {
+                    // freeze images with cssBase.processLink
+                    parsed[i] = this.child(item.type, item.url).process(baseFile);
+
+                } else {
+                    parsed[i] = item.file;
+                }
             }
 
             return parsed.join('');
