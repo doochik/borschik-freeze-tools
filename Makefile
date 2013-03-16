@@ -7,4 +7,4 @@ node_modules: package.json
 tests: node_modules
 	node_modules/mocha/bin/mocha tests/*.test.js
 
-.PHONY: all tests npm-publish
+.PHONY: all tests
