@@ -6,9 +6,9 @@ describe('freeze-js-images', function() {
     var FS = require('fs');
     var BORSCHIK = require('borschik');
 
-    const fakeFile = PATH.resolve('test/test.js');
-    const fakeResFile = PATH.resolve('test/_test.js');
-    const freezeDir = PATH.resolve('test/_');
+    const fakeFile = PATH.resolve('tests/test.js');
+    const fakeResFile = PATH.resolve('tests/_test.js');
+    const freezeDir = PATH.resolve('tests/_');
 
     afterEach(function(cb) {
         require('child_process').exec('rm -rf ' + [freezeDir, fakeFile, fakeResFile].join(' '), function() {
