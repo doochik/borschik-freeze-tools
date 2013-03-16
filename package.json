@@ -13,6 +13,11 @@
     "dependencies": {
         "borschik": "~0.2"
     },
+    "devDependencies": {
+        "chai": "*",
+        "mocha": "*",
+        "expect.js": "*"
+    },
     "engines": {
         "node": ">=0.8"
     }
