@@ -27,6 +27,15 @@
      * @returns {string}
      */
     borschik.entity = function(entity) {
-        return entities[entity] || entity;
+        return entities[entity];
+    };
+
+    /**
+     * Dummy function to use in development.
+     * @param {string} imgSrc
+     * @returns {string}
+     */
+    borschik.freeze = function(imgSrc) {
+        return imgSrc;
     };
 })();

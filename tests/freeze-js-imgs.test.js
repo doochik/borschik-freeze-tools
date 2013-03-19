@@ -19,33 +19,33 @@ describe('freeze-js-imgs', function() {
     const TESTS = [
         // single quote
         {
-            'in': "var a = borschik.entity('1.png');",
+            'in': "var a = borschik.freeze('1.png');",
             'out': 'var a = "//yandex.st/prj/_/jUK5O9GsS2gPWOhRMeBxR0GThf0.png";'
         },
         // double quote
         {
-            'in': 'var a = borschik.entity("1.png");',
+            'in': 'var a = borschik.freeze("1.png");',
             'out': 'var a = "//yandex.st/prj/_/jUK5O9GsS2gPWOhRMeBxR0GThf0.png";'
         },
         // inline comment
         {
-            'in': '//var a = borschik.entity("1.png");',
-            'out': '//var a = borschik.entity("1.png");'
+            'in': '//var a = borschik.freeze("1.png");',
+            'out': '//var a = borschik.freeze("1.png");'
         },
         // block comment
         {
-            'in': '/*var a = borschik.entity("1" + ".png");*/',
-            'out': '/*var a = borschik.entity("1" + ".png");*/'
+            'in': '/*var a = borschik.freeze("1" + ".png");*/',
+            'out': '/*var a = borschik.freeze("1" + ".png");*/'
         },
         // block comment with line breaks
         {
-            'in': '/*\nvar e = borschik.entity("1" + ".png");\n*/',
-            'out': '/*\nvar e = borschik.entity("1" + ".png");\n*/'
+            'in': '/*\nvar e = borschik.freeze("1" + ".png");\n*/',
+            'out': '/*\nvar e = borschik.freeze("1" + ".png");\n*/'
         },
         // dynamic entity
         {
-            'in': 'var f = borschik.entity("1" + ".png");',
-            'out': 'var f = borschik.entity("1" + ".png");'
+            'in': 'var f = borschik.freeze("1" + ".png");',
+            'out': 'var f = borschik.freeze("1" + ".png");'
         }
     ];
 
