@@ -1,13 +1,13 @@
 var expect = require("chai").expect;
 
-describe('freeze-js-images', function() {
+describe('freeze-js-imgs', function() {
 
     var PATH = require('path');
     var FS = require('fs');
     var BORSCHIK = require('borschik');
 
-    const fakeFile = PATH.resolve('tests/test.js');
-    const fakeResFile = PATH.resolve('tests/_test.js');
+    const fakeFile = PATH.resolve('tests/test.json');
+    const fakeResFile = PATH.resolve('tests/_test.json');
     const freezeDir = PATH.resolve('tests/_');
 
     afterEach(function(cb) {
@@ -17,10 +17,35 @@ describe('freeze-js-images', function() {
     });
 
     const TESTS = [
-        // simple json
+        // single quote
         {
-            'in': '{"img1": "1.png","css": "1.css"}',
-            'out': '{"img1":"//yandex.st/prj/1.0.0/_/jUK5O9GsS2gPWOhRMeBxR0GThf0.png","css":"//yandex.st/prj/1.0.0/1.css"}'
+            'in': "var a = borschik.entity('1.png');",
+            'out': 'var a = "//yandex.st/prj/_/jUK5O9GsS2gPWOhRMeBxR0GThf0.png";'
+        },
+        // double quote
+        {
+            'in': 'var a = borschik.entity("1.png");',
+            'out': 'var a = "//yandex.st/prj/_/jUK5O9GsS2gPWOhRMeBxR0GThf0.png";'
+        },
+        // inline comment
+        {
+            'in': '//var a = borschik.entity("1.png");',
+            'out': '//var a = borschik.entity("1.png");'
+        },
+        // block comment
+        {
+            'in': '/*var a = borschik.entity("1" + ".png");*/',
+            'out': '/*var a = borschik.entity("1" + ".png");*/'
+        },
+        // block comment with line breaks
+        {
+            'in': '/*\nvar e = borschik.entity("1" + ".png");\n*/',
+            'out': '/*\nvar e = borschik.entity("1" + ".png");\n*/'
+        },
+        // dynamic entity
+        {
+            'in': 'var f = borschik.entity("1" + ".png");',
+            'out': 'var f = borschik.entity("1" + ".png");'
         }
     ];
 
@@ -37,7 +62,7 @@ describe('freeze-js-images', function() {
                     'input': fakeFile,
                     'minimize': true,
                     'output': fakeResFile,
-                    'tech': 'tech/freeze-entities'
+                    'tech': 'borschik-tech/freeze-js-imgs'
                 })
                 .then(function() {
                     try {
