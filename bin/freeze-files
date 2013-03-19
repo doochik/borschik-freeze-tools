@@ -1,0 +1,80 @@
+#!/usr/bin/env node
+
+var FS = require('fs');
+var PATH = require('path');
+
+require('coa').Cmd()
+    .name(process.argv[1])
+    .title('Tool to freeze files and dirs')
+    .helpful()
+    .opt()
+        .name('version').title('Version')
+        .short('v').long('version')
+        .flag()
+        .only()
+        .act(function() {
+            return JSON.parse(FS.readFileSync(__dirname + '/../package.json')).version;
+        })
+        .end()
+    .opt()
+        .name('hubs').title('Path to files or dir')
+        .short('hu').long('hubs')
+        .arr()
+        .req()
+        .val(function(v) {
+            var absPath = PATH.resolve(v);
+            if (FS.existsSync(absPath)) {
+                return absPath;
+            } else {
+                throw 'Hub ' + absPath + " doesn't exists!";
+            }
+        })
+        .end()
+    .opt()
+        .name('freeze').title('Path to freeze path')
+        .short('f').long('freeze')
+        .val(function(v) {
+            var absPath = PATH.resolve(v);
+            if (FS.existsSync(absPath)) {
+                return absPath;
+            } else {
+                throw 'Freeze path ' + absPath + " doesn't exists!";
+            }
+        })
+        .end()
+    .opt()
+        .name('move').title('Move files from hubs to freeze')
+        .short('m').long('move')
+        .def(false)
+        .flag()
+        .end()
+    .opt()
+        .name('move-with-symlink').title('Move files from hubs to freeze and create symlink')
+        .short('mws').long('move-with-symlink')
+        .def(false)
+        .flag()
+        .end()
+    .opt()
+        .name('copy').title('Copy files from hubs to freeze')
+        .short('c').long('copy')
+        .def(false)
+        .flag()
+        .end()
+    .opt()
+        .name('add-version').title('Add version to output JSON')
+        .short('av').long('add-version')
+        .end()
+    .act(function(opts) {
+        if (
+            (opts['move'] || opts['copy'] || opts['move-with-symlink']) &&
+            !opts['freeze']
+        ) {
+            throw this._optsByKey['--freeze']._requiredText()
+        }
+
+        require('../lib/freeze-files')(opts);
+    })
+    .run();
+
+
+
