@@ -1,4 +1,5 @@
 _freeze
 _*
 *.freeze.*
+freeze.files.json
 
