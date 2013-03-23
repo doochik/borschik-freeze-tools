@@ -2,6 +2,8 @@
  * @fileOverview Borschik tech to freeze image entities from json.
  */
 
+process.env.BORSCHIK_FREEZABLE_EXTS = 'jpg jpeg gif ico png swf svg ttf eot otf woff css js swf';
+
 var INHERIT = require('borschik/node_modules/inherit');
 var CSSBASE = require('borschik/lib/techs/css-base');
 
