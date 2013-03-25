@@ -41,20 +41,18 @@ ent.json
 ```
 
 run borschik
-```bash
+```sh
 $ borschik --tech borschik-tech/freeze-entities --input ent.json > ent.freeze.json
 $ borschik --input 1.js > 1.freeze.js
 ```
 
 result 1.freeze.js
-```(js)
+```js
 borschik.addEntity({
     "icon-test-png": "_freeze/jUK5O9GsS2gPWOhRMeBxR0GThf0.png"
-}
-);
+});
 
 var name = 'test';
 document.write('<img src="' + borschik.entity('icon-' + name + '-png') + '"/>')
-
 ```
 
