@@ -2,6 +2,12 @@
 
 Improved freeze tools for [Borschik](https://github.com/veged/borschik)
 
+## How to freeze images in JS?
+
+1. Add script to you HTML-page ```<script src="browser/borschik.js"></script>```
+2. Markup images with ```borschik.freeze``` and ```borschik.entity```
+3. Use borschik extenstions to freeze images for production use. See below.
+
 ## Freeze images in JS (static urls)
 1.js
 ```js
