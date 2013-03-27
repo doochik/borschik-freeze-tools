@@ -1,6 +1,6 @@
 var expect = require("chai").expect;
 
-describe('freeze-entities', function() {
+describe('freeze-links', function() {
 
     var PATH = require('path');
     var FS = require('fs');

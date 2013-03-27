@@ -1,6 +1,6 @@
 var expect = require("chai").expect;
 
-describe('freeze-js-imgs', function() {
+describe('freeze-js-link', function() {
 
     var PATH = require('path');
     var FS = require('fs');
