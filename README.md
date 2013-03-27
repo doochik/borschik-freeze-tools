@@ -20,6 +20,8 @@ Improved freeze tools for [Borschik](https://github.com/veged/borschik)
 ```
 
 ## Freeze images in JS (static urls)
+[Live example](examples/freeze-js-link)
+
 1.js
 ```js
 document.write('<img src="' + borschik.link('1.png') + '"/>')
@@ -36,6 +38,8 @@ document.write('<img src="' + "_freeze/jUK5O9GsS2gPWOhRMeBxR0GThf0.png" + '"/>')
 ```
 
 ## Freeze images in JS (dynamic urls)
+[Live example](examples/freeze-links)
+
 1.js
 ```js
 borschik.addLinks(/* borschik:include:_links.freeze.json */);
