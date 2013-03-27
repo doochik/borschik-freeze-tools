@@ -1,7 +1,7 @@
 all: _ent.json _1.dev.js _1.prod.js
 
 _ent.json: ent.json
-	borschik --minimize no --tech ../../borschik-tech/freeze-entities --input $< > $@
+	borschik --minimize no --tech ../../lib/techs/freeze-links --input $< > $@
 
 _1.dev.js: _ent.json 1.dev.js
 	borschik --minimize no --input 1.dev.js > $@
