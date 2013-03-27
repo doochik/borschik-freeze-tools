@@ -77,7 +77,7 @@ describe('freeze-js-imgs', function() {
                         cb(e.message);
                     }
                 })
-                .fail(function(error) {
+                .fail(function(e) {
                     cb(e.message);
                 });
         })
