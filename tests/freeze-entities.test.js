@@ -37,7 +37,7 @@ describe('freeze-entities', function() {
                     'input': fakeFile,
                     'minimize': true,
                     'output': fakeResFile,
-                    'tech': 'borschik-tech/freeze-entities'
+                    'tech': 'borschik-tech/freeze-links'
                 })
                 .then(function() {
                     try {

@@ -19,33 +19,38 @@ describe('freeze-js-imgs', function() {
     const TESTS = [
         // single quote
         {
-            'in': "var a = borschik.freeze('1.png');",
+            'in': "var a = borschik.link('1.png');",
             'out': 'var a = "//yandex.st/prj/_/jUK5O9GsS2gPWOhRMeBxR0GThf0.png";'
         },
         // double quote
         {
-            'in': 'var a = borschik.freeze("1.png");',
+            'in': 'var a = borschik.link("1.png");',
             'out': 'var a = "//yandex.st/prj/_/jUK5O9GsS2gPWOhRMeBxR0GThf0.png";'
         },
         // inline comment
         {
-            'in': '//var a = borschik.freeze("1.png");',
-            'out': '//var a = borschik.freeze("1.png");'
+            'in': '//var a = borschik.link("1.png");',
+            'out': '//var a = borschik.link("1.png");'
         },
         // block comment
         {
-            'in': '/*var a = borschik.freeze("1" + ".png");*/',
-            'out': '/*var a = borschik.freeze("1" + ".png");*/'
+            'in': '/*var a = borschik.link("1" + ".png");*/',
+            'out': '/*var a = borschik.link("1" + ".png");*/'
         },
         // block comment with line breaks
         {
-            'in': '/*\nvar e = borschik.freeze("1" + ".png");\n*/',
-            'out': '/*\nvar e = borschik.freeze("1" + ".png");\n*/'
+            'in': '/*\nvar e = borschik.link("1" + ".png");\n*/',
+            'out': '/*\nvar e = borschik.link("1" + ".png");\n*/'
         },
-        // dynamic entity
+        // dynamic entity 1
         {
-            'in': 'var f = borschik.freeze("1" + ".png");',
-            'out': 'var f = borschik.freeze("1" + ".png");'
+            'in': 'var f = borschik.link("1" + ".png");',
+            'out': 'var f = borschik.link("1" + ".png");'
+        },
+        // dynamic entity 2
+        {
+            'in': 'var f = borschik.link("@1.png");',
+            'out': 'var f = borschik.link("@1.png");'
         }
     ];
 
@@ -62,7 +67,7 @@ describe('freeze-js-imgs', function() {
                     'input': fakeFile,
                     'minimize': true,
                     'output': fakeResFile,
-                    'tech': 'borschik-tech/freeze-js-imgs'
+                    'tech': 'borschik-tech/freeze-js-link'
                 })
                 .then(function() {
                     try {
@@ -73,7 +78,7 @@ describe('freeze-js-imgs', function() {
                     }
                 })
                 .fail(function(error) {
-                    throw error;
+                    cb(e.message);
                 });
         })
     });

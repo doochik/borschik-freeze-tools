@@ -12,7 +12,7 @@ const uniqStr = '\00borschik\00';
  * @const
  * @type {RegExp}
  */
-const allIncRe = /\/\/.*|\/\*[\s\S]*?\*\/|borschik\.freeze\(['"]([^"']+?)['"]\)/g;
+const allIncRe = /\/\/.*|\/\*[\s\S]*?\*\/|borschik\.link\(['"]([^@][^"']+?)['"]\)/g;
 
 exports.Tech = INHERIT(cssbase.Tech, {
 
