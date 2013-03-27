@@ -9,33 +9,30 @@
      */
     var borschik = window['borschik'] = {};
 
-    var entities = {};
+    var links = {};
 
     /**
-     * Add entities to hash.
-     * @param {object} obj
+     * Add links from "tech/freeze-links".
+     * @param {object} json
      */
-    borschik.addEntity = function(obj) {
-        for (var entity in obj) {
-            entities[entity] = obj[entity];
+    borschik.addLinks = function(json) {
+        for (var link in json) {
+            links[link] = json[link];
         }
     };
 
     /**
-     * Return entity by name.
-     * @param {string} entity
+     * Return link by name.
+     * @param {string} link
      * @returns {string}
      */
-    borschik.entity = function(entity) {
-        return entities[entity];
+    borschik.link = function(link) {
+        // link with "@" is dynamic
+        if (link.charAt(0) === '@') {
+            return links[link.substr(1)];
+        }
+
+        return link;
     };
 
-    /**
-     * Dummy function to use in development.
-     * @param {string} imgSrc
-     * @returns {string}
-     */
-    borschik.freeze = function(imgSrc) {
-        return imgSrc;
-    };
 })();
