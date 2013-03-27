@@ -20,6 +20,6 @@ require('coa').Cmd()
         .short('i').long('input')
         .end()
     .act(function(opts) {
-        require('../lib/borchik-freeze')(opts);
+        require('../lib/borschik-freeze')(opts);
     })
     .run();
