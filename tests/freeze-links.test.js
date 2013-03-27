@@ -37,7 +37,7 @@ describe('freeze-links', function() {
                     'input': fakeFile,
                     'minimize': true,
                     'output': fakeResFile,
-                    'tech': 'borschik-tech/freeze-links'
+                    'tech': 'lib/techs/freeze-links'
                 })
                 .then(function() {
                     try {
@@ -47,8 +47,8 @@ describe('freeze-links', function() {
                         cb(e.message);
                     }
                 })
-                .fail(function(error) {
-                    throw error;
+                .fail(function(e) {
+                    cb(e.message)
                 });
         })
     });

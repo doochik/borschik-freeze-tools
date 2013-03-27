@@ -67,7 +67,7 @@ describe('freeze-js-link', function() {
                     'input': fakeFile,
                     'minimize': true,
                     'output': fakeResFile,
-                    'tech': 'borschik-tech/freeze-js-link'
+                    'tech': 'lib/techs/freeze-js-link'
                 })
                 .then(function() {
                     try {
